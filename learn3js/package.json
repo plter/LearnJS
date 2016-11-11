@@ -1,0 +1,12 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "main": "LightOnBox.html",
+  "window": {
+    "width": 550,
+    "height": 400,
+    "max_width": 550,
+    "max_height": 400,
+    "resizable": false
+  }
+}

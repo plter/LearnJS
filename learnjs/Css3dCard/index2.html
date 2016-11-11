@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <style>
+
+        @keyframes turnOver {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @keyframes turnBack {
+            from {
+                transform: rotateY(180deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        #card:hover {
+            animation-name: turnOver;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        #card {
+            position: absolute;
+            transform: perspective(1000px) translateZ(1px);
+            animation-name: turnBack;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            width: 375px;
+            height: 562px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="card"><img src="a.png"></div>
+</body>
+</html>

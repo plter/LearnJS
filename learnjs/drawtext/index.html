@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="margin: 0px">
+<canvas width="550" height="400" id="canvas"></canvas>
+
+<script>
+
+    var canvas = document.getElementById("canvas");
+
+    var text = "Hello World";
+    /**
+     *
+     * @type {CanvasRenderingContext2D}
+     */
+    var context2d = canvas.getContext("2d");
+    context2d.font = "20px Courier";
+    context2d.fillText(text, 0, 20);
+
+    console.log(context2d.measureText(text).width);
+</script>
+
+</body>
+</html>

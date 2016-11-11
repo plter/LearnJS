@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    var img = new Image();
+    img.onerror = function(){
+        console.log("error load image");
+    };
+    img.src = "image.png";
+
+</script>
+</body>
+</html>

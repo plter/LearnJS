@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+
+    var container = document.getElementById("container");
+
+    function addContentToContainer() {
+        var html = "";
+        for (var i = 0; i < 1000; i++) {
+            html += "Item " + i + "<br>";
+        }
+        container.innerHTML = html;
+    }
+
+    function addListeners() {
+        document.onscroll = function (event) {
+            console.log(container.scrollHeight, window.scrollY);
+        }
+    }
+
+    function init() {
+        addContentToContainer();
+        addListeners();
+    }
+
+    init();
+</script>
+</body>
+</html>

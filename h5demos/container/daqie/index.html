@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title></title>
+    <style type="text/css">
+
+        body,iframe{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #html_container{
+            border: none;
+        }
+
+        #header_div{
+            display: block;
+            height: 35px;
+            width: 100%;
+            background-color: black;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            text-align: center;
+        }
+
+        #footer_div {
+            display: block;
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            left: 0px;
+            background-color: black;
+            color: lawngreen;
+            text-align: center;
+            font-size: 18pt;
+            font-weight: bold;
+        }
+
+        a:link,a:visited{
+            color: lawngreen;
+        }
+
+    </style>
+    <script src="jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<iframe id="html_container" src="http://game.2sky.cn/game/52/"></iframe>
+
+<div id="header_div">
+    <a href="http://www.jikexueyuan.com/?hmsr=games_penguin" style="margin: 0px auto;display: block"><img src="logo.png"></a>
+</div>
+<div id="footer_div">
+    <a href="http://html5.jikexueyuan.com/?hmsr=games_penguin">
+        成为极客学院会员<br>
+        学习HTML5游戏开发
+    </a>
+</div>
+
+<script>
+
+    var hContainer = document.getElementById("html_container");
+
+    function resizeHtmlContainerByWindow() {
+        hContainer.width = window.innerWidth;
+        hContainer.height = window.innerHeight;
+
+        $("#footer_div").css("top",(window.innerHeight-100)+"px");
+    }
+
+    function getParam(name) {
+        if(!window.urlParams){
+            window.urlParams = {};
+
+            var index = location.href.indexOf("?");
+            if(index>-1){
+                var textContent = location.href.substr(index + 1);
+                var textContentArr = textContent.split("&");
+
+                for(var i=0;i<textContentArr.length;i++){
+                    var kv = textContentArr[i].split("=");
+                    window.urlParams[kv[0]]=kv[1];
+                }
+            }
+        }
+
+        return window.urlParams[name];
+    }
+
+    $(window).resize(function () {
+        resizeHtmlContainerByWindow();
+    });
+
+    function main() {
+        resizeHtmlContainerByWindow();
+
+        //get url
+        var urlString = getParam("url");
+        var url;
+        if(urlString) {
+            try {
+                url = decodeURIComponent(urlString);
+            }catch (e){}
+        }
+        if(url){
+            hContainer.src = url;
+        }
+
+        //check if show header
+        if(getParam("hideheader")){
+            $("#header_div").hide();
+        }
+        //check if show footer
+        if(getParam("hidefooter")){
+            $("#footer_div").hide();
+        }
+
+        //set title
+        var contentTitle = getParam("title");
+        if(contentTitle) {
+            try {
+                contentTitle = decodeURI(contentTitle);
+            } catch (e) {}
+        }
+        if(contentTitle){
+            document.title = contentTitle;
+        }
+    }
+
+    main();
+</script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff3c68d41bda15331608595c98e9c3915' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

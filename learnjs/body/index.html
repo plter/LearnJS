@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Title</title>
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #main {
+            background-color: blue;
+            width: 200px;
+            transition-property: transform;
+            transition-duration: 0s;
+        }
+    </style>
+
+</head>
+<body>
+<div id="main">
+</div>
+
+<script>
+    var main = document.getElementById("main");
+    var html = "";
+    for (var i = 0; i < 1000; i++) {
+        html += "Item " + i + "<br>";
+    }
+    main.innerHTML = html;
+
+    setTimeout(function () {
+        main.style.transform = "translateY(-500px)";
+    }, 1000);
+
+    var transformY = 0;
+    var offset = 0;
+
+
+    function touchStartHandler(event) {
+        offset = transformY - event.touches[0].clientY;
+        document.body.addEventListener("touchmove", touchMoveHandler);
+        document.body.addEventListener("touchup", touchMoveHandler);
+    }
+
+    function touchMoveHandler(event) {
+        transformY = event.touches[0].clientY + offset;
+        main.style.transform = "translateY(" + transformY + "px)";
+    }
+
+    function touchUpHandler(event) {
+        document.body.removeEventListener("touchmove", touchMoveHandler);
+        document.body.removeEventListener("touchup", touchMoveHandler);
+    }
+
+    document.body.addEventListener("touchstart", touchStartHandler);
+
+    //    document.body.ontouchstart = function (event) {
+    //        offset = transformY - event.clientY;
+    //
+    //        console.log(event);
+    //
+    //        document.body.ontouchmove = function (event) {
+    //            transformY = event.clientY + offset;
+    //            main.style.transform = "translateY(" + transformY + "px)";
+    //        };
+    //
+    //        document.body.ontouchend = function () {
+    //            document.body.onmousemove = null;
+    //            document.body.onmouseup = null;
+    //        }
+    //    }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div class="center">Center</div>
+</div>
+
+<script>
+    var root = document.getElementById("root");
+    function resetRootSizeByWindow() {
+        root.style.width = window.innerWidth + "px";
+        root.style.height = window.innerHeight + "px";
+    }
+
+    window.onresize = function () {
+        resetRootSizeByWindow();
+    };
+
+    resetRootSizeByWindow();
+</script>
+</body>
+</html>

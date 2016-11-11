@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <style type="text/css">
+
+        .face {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+
+        @keyframes rotateBox {
+            from {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+            to {
+                transform: perspective(1000px) rotateX(1800deg) rotateY(1800deg) rotateZ(1800deg);
+            }
+        }
+
+        #container {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation-name: rotateBox;
+            animation-duration: 100s;
+            animation-fill-mode: both;
+        }
+
+        #front {
+            background-color: green;
+            transform: translateZ(50px);
+        }
+
+        #back {
+            background-color: red;
+            transform: translateZ(-50px);
+        }
+
+        #left {
+            background-color: blue;
+            transform: rotateY(90deg) translateZ(-50px);
+        }
+
+        #right {
+            background-color: orange;
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        #top {
+            background-color: yellow;
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        #bottom {
+            background-color: purple;
+            transform: rotateX(90deg) translateZ(-50px);
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="face" id="front"></div>
+    <div class="face" id="back"></div>
+    <div class="face" id="top"></div>
+    <div class="face" id="bottom"></div>
+    <div class="face" id="left"></div>
+    <div class="face" id="right"></div>
+</div>
+</body>
+</html>
