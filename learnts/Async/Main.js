@@ -9,9 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-function hello() {
-    return __awaiter(this, void 0, void 0, function* () {
-        console.log("Hello");
+function sleep(time) {
+    return new Promise((resovle) => {
+        setTimeout(resovle, time, "Result message");
     });
 }
+function main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log("Start");
+        var result = yield sleep(1000);
+        console.log(result);
+        console.log("End");
+    });
+}
+main();
 //# sourceMappingURL=Main.js.map
