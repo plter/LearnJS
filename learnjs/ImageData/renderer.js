@@ -20,39 +20,58 @@ class Main {
         let img = await this.loadImage("photo.jpg");
         this.drawingBoardContext2d.drawImage(img, 0, 0);
         let id = this.drawingBoardContext2d.getImageData(0, 0, img.width, img.height);
-        let newId = this.drawingBoardContext2d.createImageData(id.width, id.height);
 
-        let index = 0;
-        let idMat = [];
+        let width = img.width;
+        for (let i = 0; i < id.data.length; i += 4) {
+            this.context2d.save();
+            this.context2d.fillStyle = `rgba(${id.data[i]},${id.data[i + 1]},${id.data[i + 2]},1)`;
+            this.context2d.fillRect(i / 4 % width, Math.floor(i / 4 / width), 1, 1);
+            this.context2d.restore();
 
-        function putValueToIdMat(idMat, x, y, value) {
-            if (!idMat[x]) {
-                idMat[x] = [];
-            }
-            idMat[x][y] = value;
+            await this.wait(1);
         }
 
-        for (let y = 0; y < id.height; y++) {
-            for (let x = 0; x < id.width; x++) {
-                putValueToIdMat(idMat, x, y, [id.data[index], id.data[index + 1], id.data[index + 2], id.data[index + 3]]);
-                index += 4;
-            }
-        }
 
-        console.log(idMat);
+        // let newId = this.drawingBoardContext2d.createImageData(id.width, id.height);
 
-        // this.context2d.putImageData(newId, 0, 0);
+        // let index = 0;
+        // let idMat = [];
 
-        //draw mat
-        for (let y = 0; y < idMat.length; y++) {
-            let arr = idMat[y];
-            for (let x = 0; x < arr.length; x++) {
-                this.context2d.save();
-                this.context2d.fillStyle = `rgba(${idMat[x][y][0]},${idMat[x][y][1]},${idMat[x][y][2]},1)`;
-                this.context2d.fillRect(x, y, 1, 1);
-                this.context2d.restore();
-            }
-        }
+        // function putValueToIdMat(idMat, x, y, value) {
+        //     if (!idMat[y]) {
+        //         idMat[y] = [];
+        //     }
+        //     idMat[y][x] = value;
+        // }
+        //
+        // for (let y = 0; y < id.height; y++) {
+        //     for (let x = 0; x < id.width; x++) {
+        //         putValueToIdMat(idMat, x, y, [id.data[index], id.data[index + 1], id.data[index + 2], id.data[index + 3]]);
+        //         index += 4;
+        //     }
+        // }
+        //
+        // console.log(idMat);
+        //
+        // // this.context2d.putImageData(newId, 0, 0);
+        //
+        // //draw mat
+        // for (let y = 0; y < idMat.length; y++) {
+        //     let arr = idMat[y];
+        //     for (let x = 0; x < arr.length; x++) {
+        //         this.context2d.save();
+        //         this.context2d.fillStyle = `rgba(${arr[x][0]},${arr[x][1]},${arr[x][2]},1)`;
+        //         this.context2d.fillRect(x, y, 1, 1);
+        //         this.context2d.restore();
+        //     }
+        //     await this.wait(20);
+        // }
+    }
+
+    wait(delay) {
+        return new Promise(resolve => {
+            setTimeout(resolve, delay);
+        });
     }
 
     /**
